@@ -1,20 +1,20 @@
-import logo from './logo.svg';
-import React from 'react'
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RegisterAndLogin from "./components/RegisterAndLogin";
-import Home from "./components/Home";
-import './App.css';
-import {database} from './components/FireBaseConfig'
+import HomeScreen from "./components/Home";
+import ForgotPassword from "./components/ForgetPass";
+
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-        <Route path="/" element={<RegisterAndLogin />}/>
-        <Route path="/home" element={<Home/>}/>
-
-    </Routes>
-</BrowserRouter>
+      <div>
+        <Routes>
+          <Route path="/" element={<RegisterAndLogin />} />
+          <Route path="/home" element={<HomeScreen />} />
+          <Route path="/reset" element={<ForgotPassword />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
-
 export default App;
