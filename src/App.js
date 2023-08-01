@@ -5,11 +5,17 @@ import HomeScreen from "./components/Home";
 import ForgotPassword from "./components/ForgetPass";
 
 function App() {
+  const logedIn = window.localStorage.getItem("isLoggedIn");
+  console.log(logedIn);
   return (
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/" element={<RegisterAndLogin />} />
+          <Route
+            path="/"
+            exact
+            element={logedIn === true ? <HomeScreen /> : <RegisterAndLogin />}
+          />
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/reset" element={<ForgotPassword />} />
         </Routes>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { database } from "./FireBaseConfig";
 import './PasswordLoginWithFireBase.css'
-import 
-{
+import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function RegisterAndLogin() {
     const [login, setLogin] = useState(false);
@@ -37,14 +37,19 @@ function RegisterAndLogin() {
                     alert(err.code);
                 });
         }
+      window.localStorage.setItem('isLoggedIn',true)
+      const o = window.localStorage.getItem("isLoggedIn");
+    console.log("value of isLoggedIn is " + o)
     };
 
     const handleReset = () => {
         history("/reset");
     }
+    
     return (
         <div className="App">
             {/* Registration and login Screen */}
+
             <div className="row">
                 <div
                     className={login === false ? "activeColor" : "pointer"}
@@ -53,7 +58,7 @@ function RegisterAndLogin() {
                     SignUp
                 </div>
                 <div
-                    className={login === true ? "activeColor" : "pointer"}
+                    className={(login === true) ? "activeColor" : "pointer"}
                     onClick={() => setLogin(true)}
                 >
                     SignIn

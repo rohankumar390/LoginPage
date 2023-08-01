@@ -3,25 +3,24 @@ import React from "react";
 import { database } from "./FireBaseConfig";
 import { useNavigate } from "react-router-dom";
 
-
-function ForgetPass(){
+function ForgetPass() {
     const history = useNavigate();
 
-    const handleSubmit = async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const emalVal = e.target.email.value;
-        sendPasswordResetEmail(database,emalVal).then(data=>{
+        sendPasswordResetEmail(database, emalVal).then(data => {
             alert("Check your gmail")
             history("/")
-        }).catch(err=>{
+        }).catch(err => {
             alert(err.code)
         })
     }
-    return(
+    return (
         <div className="App">
             <h1>Forgot Password</h1>
-            <form onSubmit={(e)=>handleSubmit(e)}>
-                <input name="email" /><br/><br/>
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <input name="email" /><br /><br />
                 <button>Reset</button>
             </form>
         </div>

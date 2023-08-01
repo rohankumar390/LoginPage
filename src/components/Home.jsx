@@ -3,9 +3,9 @@ import RecipeItem from './RecipeItem'
 // import Spinner from "./Components/Spinner";
 import Spinner from './Spinner'
 // import LoadingBar from "react-top-loading-bar";
- import LoadingBar from  "react-top-loading-bar"
+import LoadingBar from "react-top-loading-bar"
 import './Home.css'
-import {signOut} from 'firebase/auth'
+import { signOut } from 'firebase/auth'
 import { database } from "./FireBaseConfig";
 import { useNavigate } from "react-router-dom";
 
@@ -31,10 +31,16 @@ const Home = () => {
       setProgress(100);
     }
   };
-  const signoutplz= ()=>{
-    signOut(database).then(val=>{
+  const signoutplz = () => {
+    signOut(database).then(val => {
+
       history('/')
     })
+    window.localStorage.removeItem("isLoggedIn");
+    const o = window.localStorage.getItem("isLoggedIn");
+    console.log("value of isLoggedIn is " + o)
+
+
   }
 
   const submit = (e) => {
